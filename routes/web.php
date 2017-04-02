@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'IndexController@show');
+
+Route::get('receipt/{id}', 'ReceiptController@show');

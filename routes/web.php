@@ -13,4 +13,6 @@
 
 Route::get('/', 'IndexController@show');
 
+Route::get('/category/show/{id}', 'ReceiptController@showFromCategory');
+Route::get('receipts', 'ReceiptController@all');
 Route::get('receipt/{id}', 'ReceiptController@show');

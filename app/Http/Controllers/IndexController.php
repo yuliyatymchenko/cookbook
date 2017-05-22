@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Receipt;
+use App\Models\Category;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -18,8 +18,8 @@ class IndexController extends Controller
      */
     public function show()
     {
-        $receipts = Receipt::all();
+        $categories = Category::all();
 
-        return view('home', ['receipts' => $receipts]);
+        return view('home', ['categories' => $categories]);
     }
 }

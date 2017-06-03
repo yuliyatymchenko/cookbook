@@ -1,29 +1,28 @@
 @extends('layouts.base')
 
-
 @section('content')
-    <div class="receipts">
-        <?php $rows = count($receipts)/4 ?>
+    <div class="range">
+        <?php $rows = count($receipts)/2 ?>
 
         @for($i = 0; $i < $rows; $i++)
-            <div class="row">
-                @for($j = 0; $j < 4; $j++)
-                    <div class="cell">
-                        @if(isset($receipts[$i*4 + $j]))
-                            <?php $receipt = $receipts[$i*4 + $j] ?>
-                            <?php $imagePath = "images/receipts/{$receipt->idReceipt}.jpg" ?>
-                            <a href="/receipt/{{$receipt->idReceipt}}">
-                                <img src="{{asset($imagePath)}}" />
-                                <div class="title"><span>{{$receipt->title}}</span></div>
-                            </a>
-                        @endif
-                    </div>
-                    @if($j !== 3)
-                        <div class="separator"></div>
+            @for($j = 0; $j < 2; $j++)
+                <div class="cell">
+                    @if(isset($receipts[$i*2 + $j]))
+                        <?php $receipt = $receipts[$i*2 + $j] ?>
+                        <img src="images/receipts/{{$receipt->idReceipt}}.jpg" />
+                        <div class="shadow"></div>
+                        <a href="{{route('showFromCategory', ['id' => $receipt->category->idCategory])}}">
+                            <span class="title">{{$receipt->category->name}}</span>
+                        </a>
+                        <div class="title-section">
+                            <a class="receipt-title" href="{{route('showReceipt', ['id' => $receipt->idReceipt])}}">
+                                {{$receipt->title}}
+                            </a><br />
+                            <span><i class="fa fa-clock-o fa-2" aria-hidden="true"></i> 2 дня назад</span>
+                        </div>
                     @endif
-                @endfor
-            </div>
-            <div class="separator"></div>
+                </div>
+            @endfor
         @endfor
     </div>
 @endsection

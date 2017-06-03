@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Receipt;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 /**
@@ -18,8 +20,8 @@ class IndexController extends Controller
      */
     public function show()
     {
-        $categories = Category::all();
+        $topReceipts = Receipt::latest(10)->get();
 
-        return view('home', ['categories' => $categories]);
+        return view('home', ['receipts' => $topReceipts]);
     }
 }

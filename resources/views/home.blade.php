@@ -1,27 +1,28 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="categories">
-        <?php $rows = count($categories)/4 ?>
+    <div class="range">
+        <?php $rows = count($receipts)/2 ?>
 
         @for($i = 0; $i < $rows; $i++)
-            <div class="row">
-            @for($j = 0; $j < 4; $j++)
+            @for($j = 0; $j < 2; $j++)
                 <div class="cell">
-                @if(isset($categories[$i*4 + $j]))
-                    <?php $category = $categories[$i*4 + $j] ?>
-                    <a href="/category/show/{{$category->idCategory}}">
-                    <img src="images/{{$category->idCategory + 1}}.jpg" />
-                    <div class="title"><span>{{$category->name}}</span></div>
-                    </a>
-                @endif
+                    @if(isset($receipts[$i*2 + $j]))
+                        <?php $receipt = $receipts[$i*2 + $j] ?>
+                        <img src="images/receipts/{{$receipt->idReceipt}}.jpg" />
+                        <div class="shadow"></div>
+                        <a href="{{route('showFromCategory', ['id' => $receipt->category->idCategory])}}">
+                            <span class="title">{{$receipt->category->name}}</span>
+                        </a>
+                        <div class="title-section">
+                            <a class="receipt-title" href="{{route('showReceipt', ['id' => $receipt->idReceipt])}}">
+                                {{$receipt->title}}
+                            </a><br />
+                            <span><i class="fa fa-clock-o fa-2" aria-hidden="true"></i> 2 дня назад</span>
+                        </div>
+                    @endif
                 </div>
-                @if($j !== 3)
-                    <div class="separator"></div>
-                @endif
             @endfor
-            </div>
-            <div class="separator"></div>
         @endfor
     </div>
 @endsection

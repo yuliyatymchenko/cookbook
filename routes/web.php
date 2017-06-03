@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'IndexController@show');
+Route::get('/', 'IndexController@show')->name('homepage');;
 
-Route::get('/category/show/{id}', 'ReceiptController@showFromCategory');
+Route::get('/category/show/{id}', 'ReceiptController@showFromCategory')->name('showFromCategory');
 Route::get('receipts', 'ReceiptController@all');
-Route::get('receipt/{id}', 'ReceiptController@show');
+Route::get('receipt/{id}', 'ReceiptController@show')->name('showReceipt');

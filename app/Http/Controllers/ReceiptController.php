@@ -33,7 +33,7 @@ class ReceiptController extends Controller
      */
     public function showFromCategory($categoryId)
     {
-        $receipts = DB::table('receipt')->where('idCategory', $categoryId)->get();
+        $receipts = Receipt::where('idCategory', $categoryId)->get();
 
         return view('receipt.all', ['receipts' => $receipts]);
     }
